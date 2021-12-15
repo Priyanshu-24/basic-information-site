@@ -19,6 +19,20 @@ const server = http.createServer((req, res) => {
         });
     }
 
+    else if(req.url === "/style.css") {
+
+        fs.readFile("style.css", (err, data) => {
+            if(err){
+                console.log(`Error: ${err}`);
+                return;
+            }
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "text/css");
+            res.write(data);
+            return res.end();
+        });
+    }
+
     else if(req.url === "/about") {
 
         fs.readFile("about.html", (err, data) => {
